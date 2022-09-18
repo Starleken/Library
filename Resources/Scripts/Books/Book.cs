@@ -3,10 +3,11 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using System.Data.SqlClient;
 
 namespace SchoolLearn.Resources.Scripts
 {
-    internal class Book : IBookSaver
+    internal class Book : ISaveable
     {
         public string Title { get; private set; }
 
@@ -23,9 +24,10 @@ namespace SchoolLearn.Resources.Scripts
             this.PagesCount = pagesCount;
             this.ReadingInterval = readingInterval;
         }
-        virtual public void Save()
+
+        virtual public string GetInfoForSave()
         {
-            
+            return $"'{Title}', {Price}, {PagesCount}, '{ReadingInterval.ReadBeginning}', '{ReadingInterval.ReadEnd}'";
         }
     }
 }

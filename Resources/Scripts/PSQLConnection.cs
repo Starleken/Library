@@ -36,5 +36,7 @@ namespace SchoolLearn.Resources.Scripts
         {
             connection.Close();
         }
+
+        public SqlConnection GetSqlConnection() => connection;
     }
 }

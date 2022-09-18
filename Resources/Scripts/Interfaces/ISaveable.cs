@@ -6,8 +6,8 @@ using System.Threading.Tasks;
 
 namespace SchoolLearn.Resources.Scripts
 {
-    internal interface IBookSaver
+    internal interface ISaveable
     {
-        void Save();
+        string GetInfoForSave();
     }
 }

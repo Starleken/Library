@@ -12,9 +12,15 @@ namespace SchoolLearn.Resources.Scripts
 
         public DateTime ReadEnd { get; set; }
 
-        public ReadingInterval(DateTime readBeginning, DateTime readEnd)
+        public ReadingInterval() { }
+
+        public ReadingInterval(DateTime readBeginning)
         {
             this.ReadBeginning = readBeginning;
+        }
+
+        public ReadingInterval(DateTime readBeginning, DateTime readEnd) : this(readBeginning)
+        {
             this.ReadEnd = readEnd;
         }
     }
