@@ -28,6 +28,19 @@ namespace SchoolLearn
             InitializeComponent();
 
             DisplayStartFrame();
+
+            string conn = "Host=localhost;Username=postgres;Passwpord=tqw1467gheK;Database=library";
+
+            PSQLConnection connection = new PSQLConnection(conn);
+
+            try
+            {
+                connection.TryOpenConnection();
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show(ex.Message);
+            }
         }
 
         private void DisplayStartFrame() => FrameShower.Navigate(new BooksList());

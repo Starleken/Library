@@ -8,5 +8,19 @@ namespace SchoolLearn.Resources.Scripts
 {
     internal class PSQLDatabaseReader : IDbReader
     {
+        public void ReadAllBooks()
+        {
+            throw new NotImplementedException();
+        }
+
+        public void ReadGivenBooks()
+        {
+            throw new NotImplementedException();
+        }
+
+        public void ReadReceivedBooks()
+        {
+            throw new NotImplementedException();
+        }
     }
 }

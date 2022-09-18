@@ -17,7 +17,7 @@ namespace SchoolLearn.Resources.Scripts
 
         public ReadingInterval ReadingInterval { get; set; }
 
-        public Book(string title, double price, int pagesCount, ReadingInterval readingInterval)
+        public Book(string title, double price, int pagesCount, ReadingInterval readingInterval = null)
         {
             this.Title = title;
             this.Price = price;

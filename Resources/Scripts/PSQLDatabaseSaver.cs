@@ -16,11 +16,20 @@ namespace SchoolLearn.Resources.Scripts
             this.connection = connection;
         }
 
-        public void Save(string table)
+        public void TrySave(string table, ISaveable saveableObject)
         {
-            string cmdText = $"INSERT INTO {table} VALUES ()";
+            string cmdText = $"INSERT INTO {table} VALUES ({saveableObject.GetInfoForSave()})";
 
             SqlCommand command = new SqlCommand(cmdText, connection.GetSqlConnection());
+
+            try
+            {
+                command.ExecuteNonQuery();
+            }
+            catch (Exception ex)
+            {
+                throw ex;
+            }
         }
 
     }
