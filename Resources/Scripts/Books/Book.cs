@@ -17,17 +17,34 @@ namespace SchoolLearn.Resources.Scripts
 
         public ReadingInterval ReadingInterval { get; set; }
 
-        public Book(string title, double price, int pagesCount, ReadingInterval readingInterval = null)
+        private Book()
+        {
+            ReadingInterval = new ReadingInterval();
+        }
+
+        public Book(string title, double price, int pagesCount) : this()
         {
             this.Title = title;
             this.Price = price;
             this.PagesCount = pagesCount;
+        }
+
+        public Book(string title, double price, int pagesCount, DateTime beginReading)
+            : this(title,price,pagesCount)
+        {
+            this.ReadingInterval.ReadBeginning = beginReading;
+        }
+
+        public Book(string title, double price, int pagesCount, ReadingInterval readingInterval)
+            : this(title,price,pagesCount)
+        {
             this.ReadingInterval = readingInterval;
         }
 
         virtual public string GetInfoForSave()
         {
-            return $"'{Title}', {Price.ToString().Replace(',','.')}, {PagesCount}, '{ReadingInterval.ReadBeginning}', '{ReadingInterval.ReadEnd}'";
+            return $"'{Title}', {Price.ToString().Replace(',','.')}, {PagesCount}," +
+                $" {ReadingInterval.ReadBeginning.CheckAtNullForDB()}, {ReadingInterval.ReadEnd.CheckAtNullForDB()}";
         }
     }
 }

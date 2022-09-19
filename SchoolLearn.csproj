@@ -130,6 +130,7 @@
     <Compile Include="Resources\Scripts\Books\Book.cs" />
     <Compile Include="Resources\Scripts\Books\ReceivedBook.cs" />
     <Compile Include="Resources\Scripts\Books\GivenBook.cs" />
+    <Compile Include="Resources\Scripts\Extensions.cs" />
     <Compile Include="Resources\Scripts\Interfaces\ISaveable.cs" />
     <Compile Include="Resources\Scripts\PSQLDatabaseSaver.cs" />
     <Compile Include="Resources\Scripts\Interfaces\IDbWriter.cs" />
