@@ -27,9 +27,9 @@ namespace SchoolLearn.Resources.Scripts
             {
                 connection.Open();
             }
-            catch (Exception ex)
+            catch (Exception)
             {
-                throw ex;
+                throw new ConnectionException("Не удалось установить соединение");
             }
         }
 

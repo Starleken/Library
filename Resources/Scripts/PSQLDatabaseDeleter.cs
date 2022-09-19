@@ -7,20 +7,18 @@ using Npgsql;
 
 namespace SchoolLearn.Resources.Scripts
 {
-    internal class PSQLDatabaseSaver : IDbSaver
+    internal class PSQLDatabaseDeleter : IDbDeleter
     {
         PSQLConnection connection;
 
-        public PSQLDatabaseSaver(PSQLConnection connection)
+        public PSQLDatabaseDeleter(PSQLConnection connection)
         {
             this.connection = connection;
         }
 
-       
-
-        public void TrySave(string table, ISaveable saveableObject)
+        public void DeleteObject(string table, IDeleteable removeableObject)
         {
-            string cmdText = $"INSERT INTO {table} VALUES (DEFAULT, {saveableObject.GetInfoForSave()})";
+            string cmdText = $"DELETE FROM {table} WHERE id={removeableObject.GetId()}";
 
             if (connection.IsOpen() == false)
             {
@@ -34,9 +32,8 @@ namespace SchoolLearn.Resources.Scripts
             }
             catch (Exception)
             {
-                throw new SaveException();
+                throw new DeleteException();
             }
         }
-
     }
 }

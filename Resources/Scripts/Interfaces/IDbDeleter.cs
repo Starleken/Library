@@ -6,10 +6,8 @@ using System.Threading.Tasks;
 
 namespace SchoolLearn.Resources.Scripts
 {
-    internal interface IDbWriter
+    internal interface IDbDeleter
     {
-        void AddNewBook(Book book);
-
-        void RemoveBook(Book book);
+        void DeleteObject(string table, IDeleteable removeableObject);
     }
 }

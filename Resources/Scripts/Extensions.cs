@@ -12,7 +12,7 @@ namespace SchoolLearn.Resources.Scripts
         {
             if (dateTime == new DateTime(0001,01,01))
                 return "NULL";
-            else return $"'{dateTime.ToString()}'";
+            else return $"'{dateTime}'";
         }
     }
 }
