@@ -3,31 +3,36 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
-using System.Data.SqlClient;
+using Npgsql;
 
 namespace SchoolLearn.Resources.Scripts
 {
     internal class PSQLDatabaseSaver
     {
-        IConnection connection;
+        PSQLConnection connection;
 
-        public PSQLDatabaseSaver(IConnection connection)
+        public PSQLDatabaseSaver(PSQLConnection connection)
         {
             this.connection = connection;
         }
 
         public void TrySave(string table, ISaveable saveableObject)
         {
-            string cmdText = $"INSERT INTO {table} VALUES ({saveableObject.GetInfoForSave()})";
+            string cmdText = $"INSERT INTO {table} VALUES (DEFAULT, {saveableObject.GetInfoForSave()})";
 
-            SqlCommand command = new SqlCommand(cmdText, connection.GetSqlConnection());
+            if (connection.IsOpen() == false)
+            {
+                throw new Exception();
+            }
 
             try
             {
+                NpgsqlCommand command = new NpgsqlCommand(cmdText, connection.GetNpgsqlConnection());
                 command.ExecuteNonQuery();
             }
             catch (Exception ex)
             {
+
                 throw ex;
             }
         }

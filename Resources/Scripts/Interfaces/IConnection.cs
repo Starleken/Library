@@ -11,10 +11,10 @@ namespace SchoolLearn.Resources.Scripts
     {
         string ConnectionPath { get; set; }
 
-        SqlConnection GetSqlConnection();
-
         void TryOpenConnection();
 
         void CloseConnection();
+
+        bool IsOpen();
     }
 }

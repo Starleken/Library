@@ -27,7 +27,7 @@ namespace SchoolLearn.Resources.Scripts
 
         virtual public string GetInfoForSave()
         {
-            return $"'{Title}', {Price}, {PagesCount}, '{ReadingInterval.ReadBeginning}', '{ReadingInterval.ReadEnd}'";
+            return $"'{Title}', {Price.ToString().Replace(',','.')}, {PagesCount}, '{ReadingInterval.ReadBeginning}', '{ReadingInterval.ReadEnd}'";
         }
     }
 }
