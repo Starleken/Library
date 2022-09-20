@@ -26,6 +26,11 @@ namespace SchoolLearn.Resources.Scripts
             ReadingInterval = new ReadingInterval();
         }
 
+        public Book(string title)
+        {
+            this.Title = title;
+        }
+
         public Book(string title, double price, int pagesCount, int? id = null) : this()
         {
             this.Id = id;

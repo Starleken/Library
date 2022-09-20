@@ -8,9 +8,9 @@ namespace SchoolLearn.Resources.Scripts
 {
     static internal class Extensions
     {
-        static public string CheckAtNullForDB(this DateTime dateTime)
+        static public string CheckAtNullForDB(this DateTime? dateTime)
         {
-            if (dateTime == new DateTime(0001,01,01))
+            if (dateTime == null)
                 return "NULL";
             else return $"'{dateTime}'";
         }

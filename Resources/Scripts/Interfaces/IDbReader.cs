@@ -8,10 +8,10 @@ namespace SchoolLearn.Resources.Scripts
 {
     internal interface IDbReader
     {
-        void ReadAllBooks();
+        List<Book> ReadAllBooks();
 
-        void ReadGivenBooks();
+        GivenBook[] ReadGivenBooks();
 
-        void ReadReceivedBooks();
+        ReceivedBook[] ReadReceivedBooks();
     }
 }

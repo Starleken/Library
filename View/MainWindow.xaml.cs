@@ -14,6 +14,7 @@ using System.Windows.Navigation;
 using System.Windows.Shapes;
 using SchoolLearn.View.Lists;
 using SchoolLearn.Resources.Scripts;
+using Npgsql;
 
 namespace SchoolLearn
 {
@@ -32,21 +33,20 @@ namespace SchoolLearn
 
             PSQLConnection connection = new PSQLConnection(conn);
 
+            connection.TryOpenConnection();
+
+            Book book = new Book("t",45.23,52);
+
+            PSQLDatabaseReader reader = new PSQLDatabaseReader(connection);
             try
             {
-                connection.TryOpenConnection();
-
-                Book book = new Book("gdf",42.52,61,12);
-
-                PSQLDatabaseDeleter deleter = new PSQLDatabaseDeleter(connection);
-                deleter.DeleteObject("book", book);
+                List<Book> books = reader.ReadAllBooks();
             }
             catch (Exception ex)
             {
                 MessageBox.Show(ex.Message);
                 throw;
             }
-            
         }
 
         private void DisplayStartFrame() => FrameShower.Navigate(new BooksList());
