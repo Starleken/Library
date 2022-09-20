@@ -6,8 +6,8 @@ using System.Threading.Tasks;
 
 namespace SchoolLearn.Resources.Scripts
 {
-    internal interface ISaveable
+    internal interface IAddeable
     {
-        string GetInfoForSave();
+        string GetInfoForAdd();
     }
 }

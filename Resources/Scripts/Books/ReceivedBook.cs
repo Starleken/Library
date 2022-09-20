@@ -17,9 +17,9 @@ namespace SchoolLearn.Resources.Scripts.Books
             this.DateOfReceived = dateOfReceived;
         }
 
-        public override string GetInfoForSave()
+        public override string GetInfoForAdd()
         {
-            return $"{base.GetInfoForSave()}, ''";
+            return $"{base.GetInfoForAdd()}, ''";
         }
     }
 }

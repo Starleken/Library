@@ -32,36 +32,22 @@ namespace SchoolLearn
             string conn = $"Host=localhost;Username=postgres;Database=library;Port=5432;Password=tqw1467gheK";
 
             PSQLConnection connection = new PSQLConnection(conn);
+
             try
             {
                 connection.TryOpenConnection();
-            }
-            catch (Exception ex)
-            {
 
-                throw;
-            }
+                Book book = new Book("gdf",42.52,61,12);
 
-            Book book;
-            try
-            {
-                book = new Book("gfs", 42.42, 52, new DateTime(2004,04,15));
+                PSQLDatabaseDeleter deleter = new PSQLDatabaseDeleter(connection);
+                deleter.DeleteObject("book", book);
             }
             catch (Exception ex)
             {
                 MessageBox.Show(ex.Message);
                 throw;
             }
-
-            PSQLDatabaseSaver saver = new PSQLDatabaseSaver(connection);
-            try
-            {
-                saver.TrySave("book", book);
-            }
-            catch (Exception ex)
-            {
-                MessageBox.Show(ex.Message);
-            }
+            
         }
 
         private void DisplayStartFrame() => FrameShower.Navigate(new BooksList());

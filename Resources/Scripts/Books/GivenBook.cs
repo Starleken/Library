@@ -16,9 +16,9 @@ namespace SchoolLearn.Resources.Scripts
             this.DateOfReturn = dateOfReturn;
         }
 
-        public override string GetInfoForSave()
+        public override string GetInfoForAdd()
         {
-            return $"{base.GetInfoForSave()}, '{DateOfReturn}'";
+            return $"{base.GetInfoForAdd()}, '{DateOfReturn}'";
         }
     }
 }

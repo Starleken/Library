@@ -6,8 +6,8 @@ using System.Threading.Tasks;
 
 namespace SchoolLearn.Resources.Scripts
 {
-    internal interface IDbSaver
+    internal interface IDbAdder
     {
-        void TrySave(string table, ISaveable saveableObject);
+        int TryAdd(string table, IAddeable saveableObject);
     }
 }

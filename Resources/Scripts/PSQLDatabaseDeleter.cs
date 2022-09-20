@@ -9,7 +9,7 @@ namespace SchoolLearn.Resources.Scripts
 {
     internal class PSQLDatabaseDeleter : IDbDeleter
     {
-        PSQLConnection connection;
+        private PSQLConnection connection;
 
         public PSQLDatabaseDeleter(PSQLConnection connection)
         {
@@ -18,12 +18,23 @@ namespace SchoolLearn.Resources.Scripts
 
         public void DeleteObject(string table, IDeleteable removeableObject)
         {
-            string cmdText = $"DELETE FROM {table} WHERE id={removeableObject.GetId()}";
-
             if (connection.IsOpen() == false)
             {
-                throw new ConnectionException();
+                throw new ConnectionException("Соединение не установлено");
             }
+
+            int? id = removeableObject.GetId();
+
+            try
+            {
+                CheckIdAtNull(id);
+            }
+            catch (NullReferenceException ex)
+            {
+                throw ex;
+            }
+
+            string cmdText = $"DELETE FROM {table} WHERE id={id}";
 
             try
             {
@@ -32,7 +43,15 @@ namespace SchoolLearn.Resources.Scripts
             }
             catch (Exception)
             {
-                throw new DeleteException();
+                throw new DeleteException("Ошибка удаления обьекта") ;
+            }
+        }
+
+        private void CheckIdAtNull(int? id)
+        {
+            if (id == null)
+            {
+                throw new NullReferenceException("id не может быть NULL");
             }
         }
     }

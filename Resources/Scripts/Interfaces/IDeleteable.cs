@@ -8,6 +8,6 @@ namespace SchoolLearn.Resources.Scripts
 {
     internal interface IDeleteable
     {
-        int GetId();
+        int? GetId();
     }
 }

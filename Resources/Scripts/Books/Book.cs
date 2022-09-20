@@ -7,8 +7,10 @@ using System.Data.SqlClient;
 
 namespace SchoolLearn.Resources.Scripts
 {
-    internal class Book : ISaveable
+    internal class Book : IAddeable, IDeleteable
     {
+        public int? Id { get; private set; } //при создании книги из приложения у неё не может быть id
+
         public string Title { get; private set; }
 
         public double Price { get; private set; }
@@ -22,29 +24,35 @@ namespace SchoolLearn.Resources.Scripts
             ReadingInterval = new ReadingInterval();
         }
 
-        public Book(string title, double price, int pagesCount) : this()
+        public Book(string title, double price, int pagesCount, int? id = null) : this()
         {
+            this.Id = id;
             this.Title = title;
             this.Price = price;
             this.PagesCount = pagesCount;
         }
 
-        public Book(string title, double price, int pagesCount, DateTime beginReading)
-            : this(title,price,pagesCount)
+        public Book(string title, double price, int pagesCount, DateTime beginReading, int? id = null)
+            : this(title,price,pagesCount, id)
         {
             this.ReadingInterval.ReadBeginning = beginReading;
         }
 
-        public Book(string title, double price, int pagesCount, ReadingInterval readingInterval)
-            : this(title,price,pagesCount)
+        public Book(string title, double price, int pagesCount, ReadingInterval readingInterval, int? id = null)
+            : this(title,price,pagesCount, id)
         {
             this.ReadingInterval = readingInterval;
         }
 
-        virtual public string GetInfoForSave()
+        virtual public string GetInfoForAdd()
         {
             return $"'{Title}', {Price.ToString().Replace(',','.')}, {PagesCount}," +
                 $" {ReadingInterval.ReadBeginning.CheckAtNullForDB()}, {ReadingInterval.ReadEnd.CheckAtNullForDB()}";
+        }
+
+        public int? GetId()
+        {
+            return Id;
         }
     }
 }
