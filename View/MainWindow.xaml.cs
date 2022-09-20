@@ -14,7 +14,6 @@ using System.Windows.Navigation;
 using System.Windows.Shapes;
 using SchoolLearn.View.Lists;
 using SchoolLearn.Resources.Scripts;
-using System.Data.SqlClient;
 
 namespace SchoolLearn
 {

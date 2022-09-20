@@ -19,6 +19,8 @@ namespace SchoolLearn.Resources.Scripts
 
         public ReadingInterval ReadingInterval { get; set; }
 
+        private const string TABLE_NAME = "book";
+
         private Book()
         {
             ReadingInterval = new ReadingInterval();
@@ -53,6 +55,11 @@ namespace SchoolLearn.Resources.Scripts
         public int? GetId()
         {
             return Id;
+        }
+
+        public string GetTableName()
+        {
+            return TABLE_NAME;
         }
     }
 }

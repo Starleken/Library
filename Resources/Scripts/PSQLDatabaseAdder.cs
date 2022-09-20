@@ -7,23 +7,23 @@ using Npgsql;
 
 namespace SchoolLearn.Resources.Scripts
 {
-    internal class PSQLDatabaseSaver : IDbAdder
+    internal class PSQLDatabaseAdder : IDbAdder
     {
         private PSQLConnection connection;
 
-        public PSQLDatabaseSaver(PSQLConnection connection)
+        public PSQLDatabaseAdder(PSQLConnection connection)
         {
             this.connection = connection;
         }
 
-        public int TryAdd(string table, IAddeable saveableObject)
+        public int TryAdd(IAddeable addeableObject)
         {
             if (connection.IsOpen() == false)
             {
                 throw new ConnectionException("Соединение не установлено");
             }
 
-            string cmdText = $"INSERT INTO {table} VALUES (DEFAULT, {saveableObject.GetInfoForAdd()}) RETURNING idbook";
+            string cmdText = $"INSERT INTO {addeableObject.GetTableName()} VALUES (DEFAULT, {addeableObject.GetInfoForAdd()}) RETURNING idbook";
 
             try
             {
@@ -32,9 +32,9 @@ namespace SchoolLearn.Resources.Scripts
 
                 return (int)id;
             }
-            catch (Exception ex)
+            catch (Exception)
             {
-                throw new SaveException("Ошибка сохранения обьекта");
+                throw new AddException("Ошибка добавления обьекта");
             }
         }
 

@@ -8,6 +8,6 @@ namespace SchoolLearn.Resources.Scripts
 {
     internal interface IDbDeleter
     {
-        void DeleteObject(string table, IDeleteable removeableObject);
+        void DeleteObject(IDeleteable removeableObject);
     }
 }

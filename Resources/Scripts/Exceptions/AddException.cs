@@ -6,8 +6,10 @@ using System.Threading.Tasks;
 
 namespace SchoolLearn.Resources.Scripts
 {
-    internal interface IAddeable : ITabular
+    internal class AddException : Exception
     {
-        string GetInfoForAdd();
+        public AddException() { }
+
+        public AddException(string message) : base(message) { }
     }
 }

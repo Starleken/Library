@@ -16,14 +16,14 @@ namespace SchoolLearn.Resources.Scripts
             this.connection = connection;
         }
 
-        public void DeleteObject(string table, IDeleteable removeableObject)
+        public void DeleteObject(IDeleteable deleteableObject)
         {
             if (connection.IsOpen() == false)
             {
                 throw new ConnectionException("Соединение не установлено");
             }
 
-            int? id = removeableObject.GetId();
+            int? id = deleteableObject.GetId();
 
             try
             {
@@ -34,7 +34,7 @@ namespace SchoolLearn.Resources.Scripts
                 throw ex;
             }
 
-            string cmdText = $"DELETE FROM {table} WHERE id={id}";
+            string cmdText = $"DELETE FROM {deleteableObject.GetTableName()} WHERE id={id}";
 
             try
             {

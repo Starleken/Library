@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace SchoolLearn.Resources.Scripts
 {
-    internal interface IDeleteable
+    internal interface IDeleteable : ITabular
     {
         int? GetId();
     }

@@ -6,10 +6,8 @@ using System.Threading.Tasks;
 
 namespace SchoolLearn.Resources.Scripts
 {
-    internal class SaveException : Exception
+    internal interface ITabular
     {
-        public SaveException() { }
-
-        public SaveException(string message) : base(message) { }
+        string GetTableName();
     }
 }
