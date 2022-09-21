@@ -19,16 +19,11 @@ namespace SchoolLearn.Resources.Scripts
 
         public ReadingInterval ReadingInterval { get; set; }
 
-        private const string TABLE_NAME = "book";
+        private readonly string TABLE_NAME = TableNames.BOOK_TABLE;
 
         private Book()
         {
             ReadingInterval = new ReadingInterval();
-        }
-
-        public Book(string title)
-        {
-            this.Title = title;
         }
 
         public Book(string title, double price, int pagesCount, int? id = null) : this()
