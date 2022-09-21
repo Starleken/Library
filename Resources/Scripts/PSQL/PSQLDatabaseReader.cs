@@ -18,24 +18,14 @@ namespace SchoolLearn.Resources.Scripts
 
         public List<Book> ReadAllBooks()
         {
-            string cmdText = "SELECT * FROM book";
+            string cmdText = $"SELECT * FROM {TableNames.BOOK_TABLE}";
 
-            NpgsqlCommand command = new NpgsqlCommand(cmdText, connection.GetNpgsqlConnection());
-
-            NpgsqlDataReader reader = command.ExecuteReader();
+            NpgsqlDataReader reader = MakeQuery(cmdText);
 
             List<Book> books = new List<Book>();
             while (reader.Read())
             {
-                ReadingInterval readingInterval;
-
-                if (reader["beginreading"] != DBNull.Value)
-                {
-                    readingInterval = new ReadingInterval(
-                    Convert.ToDateTime(reader["beginreading"]),
-                    Convert.ToDateTime(reader["endreading"]));
-                }
-                else readingInterval = new ReadingInterval();
+                ReadingInterval readingInterval = CreateReadingInterval(reader);
 
                 books.Add(new Book
                     (
@@ -58,6 +48,29 @@ namespace SchoolLearn.Resources.Scripts
         public ReceivedBook[] ReadReceivedBooks()
         {
             throw new NotImplementedException();
+        }
+
+        private NpgsqlDataReader MakeQuery(string cmdText)
+        {
+            NpgsqlCommand command = new NpgsqlCommand(cmdText, connection.GetNpgsqlConnection());
+
+            NpgsqlDataReader reader = command.ExecuteReader();
+            return reader;
+        }
+
+        private ReadingInterval CreateReadingInterval(NpgsqlDataReader reader)
+        {
+            ReadingInterval readingInterval;
+
+            if (reader["beginreading"] != DBNull.Value)
+            {
+                readingInterval = new ReadingInterval(
+                Convert.ToDateTime(reader["beginreading"]),
+                Convert.ToDateTime(reader["endreading"]));
+            }
+            else readingInterval = new ReadingInterval();
+
+            return readingInterval;
         }
     }
 }

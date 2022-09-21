@@ -130,6 +130,7 @@
     <Compile Include="Resources\Scripts\Books\Book.cs" />
     <Compile Include="Resources\Scripts\Books\ReceivedBook.cs" />
     <Compile Include="Resources\Scripts\Books\GivenBook.cs" />
+    <Compile Include="Resources\Scripts\TableNames.cs" />
     <Compile Include="Resources\Scripts\Exceptions\DeleteException.cs" />
     <Compile Include="Resources\Scripts\Exceptions\AddException.cs" />
     <Compile Include="Resources\Scripts\Exceptions\ConnectionException.cs" />
@@ -138,14 +139,14 @@
     <Compile Include="Resources\Scripts\Interfaces\IDeleteable.cs" />
     <Compile Include="Resources\Scripts\Interfaces\IAddeable.cs" />
     <Compile Include="Resources\Scripts\Interfaces\ITabular.cs" />
-    <Compile Include="Resources\Scripts\PSQLDatabaseAdder.cs" />
+    <Compile Include="Resources\Scripts\PSQL\PSQLDatabaseAdder.cs" />
     <Compile Include="Resources\Scripts\Interfaces\IDbDeleter.cs" />
     <Compile Include="Resources\Scripts\ReadingInterval.cs" />
     <Compile Include="Resources\Scripts\Interfaces\IDbReader.cs" />
     <Compile Include="Resources\Scripts\Interfaces\IConnection.cs" />
-    <Compile Include="Resources\Scripts\PSQLDatabaseDeleter.cs" />
-    <Compile Include="Resources\Scripts\PSQLDatabaseReader.cs" />
-    <Compile Include="Resources\Scripts\PSQLConnection.cs" />
+    <Compile Include="Resources\Scripts\PSQL\PSQLDatabaseDeleter.cs" />
+    <Compile Include="Resources\Scripts\PSQL\PSQLDatabaseReader.cs" />
+    <Compile Include="Resources\Scripts\PSQL\PSQLConnection.cs" />
     <Compile Include="View\Frames\BooksList.xaml.cs">
       <DependentUpon>BooksList.xaml</DependentUpon>
     </Compile>

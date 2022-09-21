@@ -41,6 +41,7 @@ namespace SchoolLearn
             try
             {
                 List<Book> books = reader.ReadAllBooks();
+                MessageBox.Show(books[1].Id.ToString());
             }
             catch (Exception ex)
             {
