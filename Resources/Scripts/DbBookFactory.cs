@@ -52,6 +52,7 @@ namespace SchoolLearn.Resources.Scripts
                 Convert.ToDouble(reader["price"]),
                 Convert.ToInt32(reader["listcount"]),
                 Convert.ToDateTime(reader["givedate"]),
+                Convert.ToInt32(reader["idbook"]),
                 readingInterval,
                 Convert.ToInt32(reader["idgivenbook"])
                 );

@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace SchoolLearn.Resources.Scripts
 {
-    internal interface ITabular
+    internal interface Itabular
     {
         string GetTableName();
     }

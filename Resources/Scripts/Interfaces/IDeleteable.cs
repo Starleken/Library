@@ -6,8 +6,10 @@ using System.Threading.Tasks;
 
 namespace SchoolLearn.Resources.Scripts
 {
-    internal interface IDeleteable : ITabular
+    internal interface IDeleteable
     {
         int? GetId();
+
+        string GetQueueForDelete();
     }
 }

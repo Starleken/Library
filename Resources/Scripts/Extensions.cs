@@ -14,5 +14,12 @@ namespace SchoolLearn.Resources.Scripts
                 return "NULL";
             else return $"'{dateTime}'";
         }
+
+        static public string CheckAtNullForDB(this DateTime dateTime)
+        {
+            if (dateTime == null)
+                return "NULL";
+            else return $"'{dateTime}'";
+        }
     }
 }

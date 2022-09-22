@@ -32,9 +32,9 @@ namespace SchoolLearn.Resources.Scripts
             catch (NullReferenceException ex)
             {
                 throw ex;
-            }   
+            }
 
-            string cmdText = $"DELETE FROM {deleteableObject.GetTableName()} WHERE id={id}";
+            string cmdText = deleteableObject.GetQueueForDelete();
 
             try
             {

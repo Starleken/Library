@@ -10,15 +10,28 @@ namespace SchoolLearn.Resources.Scripts
     {
         public DateTime GivenDate { get; private set; }
 
-        public GivenBook(string title, double price, int pagesCount, DateTime dateOfReturn, ReadingInterval readingInterval = null, int? id = null) 
+        private int idbook; 
+
+        public GivenBook(string title, double price, int pagesCount, DateTime dateOfReturn, int idbook, ReadingInterval readingInterval = null, int? id = null) 
             : base(title, price, pagesCount, readingInterval, id)
         {
             this.GivenDate = dateOfReturn;
+            this.idbook = idbook;
         }
 
         public override string GetInfoForAdd()
         {
-            return $"{base.GetInfoForAdd()}, '{GivenDate}'";
+            return $"{idbook}, {GivenDate.CheckAtNullForDB()}";
+        }
+
+        public override string GetTableName()
+        {
+            return TableNames.GIVEN_BOOK_TABLE;
+        }
+
+        public override string GetQueueForDelete()
+        {
+            return $"DELETE FROM {TableNames.GIVEN_BOOK_TABLE} WHERE idgivenbook = {Id}";
         }
     }
 }

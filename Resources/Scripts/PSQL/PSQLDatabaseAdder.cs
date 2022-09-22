@@ -16,7 +16,7 @@ namespace SchoolLearn.Resources.Scripts
             this.connection = connection;
         }
 
-        public int TryAdd(IAddeable addeableObject)
+        public void TryAdd(IAddeable addeableObject)
         {
             if (connection.IsOpen() == false)
             {
@@ -28,9 +28,7 @@ namespace SchoolLearn.Resources.Scripts
             try
             {
                 NpgsqlCommand command = new NpgsqlCommand(cmdText, connection.GetNpgsqlConnection());
-                object id = command.ExecuteScalar();
-
-                return (int)id;
+                command.ExecuteNonQuery();
             }
             catch (Exception)
             {

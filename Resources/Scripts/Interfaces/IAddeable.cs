@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace SchoolLearn.Resources.Scripts
 {
-    internal interface IAddeable : ITabular
+    internal interface IAddeable : Itabular
     {
         string GetInfoForAdd();
     }

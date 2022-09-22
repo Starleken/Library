@@ -35,11 +35,11 @@ namespace SchoolLearn
 
             connection.TryOpenConnection();
 
-            PSQLDatabaseReader reader = new PSQLDatabaseReader(connection);
             try
             {
-                List<GivenBook> books = reader.ReadGivenBooks();
-                MessageBox.Show(books[0].Id.ToString());
+                GivenBook book = new GivenBook("g", 42.52, 261, new DateTime(2006, 12, 02), 17, new ReadingInterval(),3);
+                PSQLDatabaseDeleter deleter = new PSQLDatabaseDeleter(connection);
+                deleter.DeleteObject(book);
             }
             catch (Exception ex)
             {

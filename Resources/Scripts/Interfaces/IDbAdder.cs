@@ -8,6 +8,6 @@ namespace SchoolLearn.Resources.Scripts
 {
     internal interface IDbAdder
     {
-        int TryAdd(IAddeable saveableObject);
+        void TryAdd(IAddeable saveableObject);
     }
 }

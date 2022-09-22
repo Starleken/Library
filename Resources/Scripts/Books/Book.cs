@@ -19,8 +19,6 @@ namespace SchoolLearn.Resources.Scripts
 
         public ReadingInterval ReadingInterval { get; set; }
 
-        private readonly string TABLE_NAME = TableNames.BOOK_TABLE;
-
         private Book()
         {
             ReadingInterval = new ReadingInterval();
@@ -57,9 +55,14 @@ namespace SchoolLearn.Resources.Scripts
             return Id;
         }
 
-        public string GetTableName()
+        virtual public string GetQueueForDelete()
         {
-            return TABLE_NAME;
+            return $"DELETE FROM {TableNames.BOOK_TABLE} WHERE idbook = {Id}";
+        }
+
+        virtual public string GetTableName()
+        {
+            return TableNames.BOOK_TABLE;
         }
     }
 }
