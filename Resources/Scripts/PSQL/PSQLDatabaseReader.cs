@@ -10,6 +10,7 @@ namespace SchoolLearn.Resources.Scripts
     internal class PSQLDatabaseReader : IDbReader
     {
         private PSQLConnection connection;
+        private DbBookFactory bookFactory = new DbBookFactory();
 
         public PSQLDatabaseReader(PSQLConnection connection)
         {
@@ -25,29 +26,44 @@ namespace SchoolLearn.Resources.Scripts
             List<Book> books = new List<Book>();
             while (reader.Read())
             {
-                ReadingInterval readingInterval = CreateReadingInterval(reader);
-
-                books.Add(new Book
-                    (
-                    reader["title"].ToString(),
-                    Convert.ToDouble(reader["price"]),
-                    Convert.ToInt32(reader["listcount"]),
-                    readingInterval,
-                    Convert.ToInt32(reader["idbook"])
-                    ));
+                books.Add(new DbBookFactory().Get(BookType.book, reader));
             }
 
             return books;
         }
 
-        public GivenBook[] ReadGivenBooks()
+        public List<GivenBook> ReadGivenBooks()
         {
-            throw new NotImplementedException();
+            string cmdText = $"SELECT * FROM {TableNames.BOOK_TABLE}, {TableNames.GIVEN_BOOK_TABLE}" +
+                $" WHERE {TableNames.GIVEN_BOOK_TABLE}.idbook = {TableNames.BOOK_TABLE}.idbook";
+
+            NpgsqlDataReader reader = MakeQuery(cmdText);
+
+            List<GivenBook> books = new List<GivenBook>();
+            while (reader.Read())
+            {
+                Book book = bookFactory.Get(BookType.givenBook, reader);
+                books.Add((GivenBook)book);
+            }
+
+            return books;
         }
 
-        public ReceivedBook[] ReadReceivedBooks()
+        public List<ReceivedBook> ReadReceivedBooks()
         {
-            throw new NotImplementedException();
+            string cmdText = $"SELECT * FROM {TableNames.BOOK_TABLE}, {TableNames.RECEIVED_BOOK_TABLE}" +
+                $" WHERE {TableNames.RECEIVED_BOOK_TABLE}.idbook = {TableNames.BOOK_TABLE}.idbook";
+
+            NpgsqlDataReader reader = MakeQuery(cmdText);
+
+            List<ReceivedBook> books = new List<ReceivedBook>();
+            while (reader.Read())
+            {
+                Book book = bookFactory.Get(BookType.receivedBook, reader);
+                books.Add((ReceivedBook)book);
+            }
+
+            return books;
         }
 
         private NpgsqlDataReader MakeQuery(string cmdText)
@@ -56,21 +72,6 @@ namespace SchoolLearn.Resources.Scripts
 
             NpgsqlDataReader reader = command.ExecuteReader();
             return reader;
-        }
-
-        private ReadingInterval CreateReadingInterval(NpgsqlDataReader reader)
-        {
-            ReadingInterval readingInterval;
-
-            if (reader["beginreading"] != DBNull.Value)
-            {
-                readingInterval = new ReadingInterval(
-                Convert.ToDateTime(reader["beginreading"]),
-                Convert.ToDateTime(reader["endreading"]));
-            }
-            else readingInterval = new ReadingInterval();
-
-            return readingInterval;
         }
     }
 }

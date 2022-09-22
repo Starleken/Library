@@ -130,6 +130,8 @@
     <Compile Include="Resources\Scripts\Books\Book.cs" />
     <Compile Include="Resources\Scripts\Books\ReceivedBook.cs" />
     <Compile Include="Resources\Scripts\Books\GivenBook.cs" />
+    <Compile Include="Resources\Scripts\DbBookFactory.cs" />
+    <Compile Include="Resources\Scripts\BookType.cs" />
     <Compile Include="Resources\Scripts\TableNames.cs" />
     <Compile Include="Resources\Scripts\Exceptions\DeleteException.cs" />
     <Compile Include="Resources\Scripts\Exceptions\AddException.cs" />

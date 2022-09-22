@@ -35,13 +35,11 @@ namespace SchoolLearn
 
             connection.TryOpenConnection();
 
-            Book book = new Book("t",45.23,52);
-
             PSQLDatabaseReader reader = new PSQLDatabaseReader(connection);
             try
             {
-                List<Book> books = reader.ReadAllBooks();
-                MessageBox.Show(books[1].Id.ToString());
+                List<GivenBook> books = reader.ReadGivenBooks();
+                MessageBox.Show(books[0].Id.ToString());
             }
             catch (Exception ex)
             {

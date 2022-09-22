@@ -6,12 +6,10 @@ using System.Threading.Tasks;
 
 namespace SchoolLearn.Resources.Scripts
 {
-    internal interface IDbReader
+    internal enum BookType
     {
-        List<Book> ReadAllBooks();
-
-        List<GivenBook> ReadGivenBooks();
-
-        List<ReceivedBook> ReadReceivedBooks();
+        book,
+        givenBook,
+        receivedBook
     }
 }

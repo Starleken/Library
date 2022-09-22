@@ -8,17 +8,17 @@ namespace SchoolLearn.Resources.Scripts
 {
     internal class GivenBook : Book
     {
-        public DateTime DateOfReturn { get; private set; }
+        public DateTime GivenDate { get; private set; }
 
-        public GivenBook(string title, double price, int pagesCount, DateTime dateOfReturn, ReadingInterval readingInterval = null) 
-            : base(title, price, pagesCount, readingInterval)
+        public GivenBook(string title, double price, int pagesCount, DateTime dateOfReturn, ReadingInterval readingInterval = null, int? id = null) 
+            : base(title, price, pagesCount, readingInterval, id)
         {
-            this.DateOfReturn = dateOfReturn;
+            this.GivenDate = dateOfReturn;
         }
 
         public override string GetInfoForAdd()
         {
-            return $"{base.GetInfoForAdd()}, '{DateOfReturn}'";
+            return $"{base.GetInfoForAdd()}, '{GivenDate}'";
         }
     }
 }
