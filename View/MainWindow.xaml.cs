@@ -37,9 +37,14 @@ namespace SchoolLearn
 
             try
             {
-                GivenBook book = new GivenBook("g", 42.52, 261, new DateTime(2006, 12, 02), 17, new ReadingInterval(),3);
+                PSQLDatabaseReader reader = new PSQLDatabaseReader(connection);
+                List<ReceivedBook> receivedBooks = reader.ReadReceivedBooks();
+
                 PSQLDatabaseDeleter deleter = new PSQLDatabaseDeleter(connection);
-                deleter.DeleteObject(book);
+                foreach (var item in receivedBooks)
+                {
+                    deleter.DeleteObject(item);
+                }
             }
             catch (Exception ex)
             {

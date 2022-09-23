@@ -16,6 +16,9 @@ namespace SchoolLearn.Resources.Scripts
             this.connection = connection;
         }
 
+        /// <summary>
+        /// Возвращает id добавленного экземпляра
+        /// </summary>
         public void TryAdd(IAddeable addeableObject)
         {
             if (connection.IsOpen() == false)

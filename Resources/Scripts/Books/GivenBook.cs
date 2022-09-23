@@ -12,7 +12,7 @@ namespace SchoolLearn.Resources.Scripts
 
         private int idbook; 
 
-        public GivenBook(string title, double price, int pagesCount, DateTime dateOfReturn, int idbook, ReadingInterval readingInterval = null, int? id = null) 
+        public GivenBook(string title, double price, int pagesCount, DateTime dateOfReturn, int idbook, int? id = null, ReadingInterval readingInterval = null) 
             : base(title, price, pagesCount, readingInterval, id)
         {
             this.GivenDate = dateOfReturn;

@@ -10,20 +10,28 @@ namespace SchoolLearn.Resources.Scripts
     {
         public DateTime ReceiveDate { get; set; }
 
-        public ReceivedBook(string title, double price, int pagesCount, DateTime receiveDate, ReadingInterval readingInterval = null, int? id = null) 
+        private int idbook;
+
+        public ReceivedBook(string title, double price, int pagesCount, DateTime receiveDate, int idbook, int? id = null, ReadingInterval readingInterval = null) 
             : base(title, price, pagesCount, readingInterval, id)
         {
             this.ReceiveDate = receiveDate;
+            this.idbook = idbook;
         }
 
         public override string GetInfoForAdd()
         {
-            return $"{base.GetInfoForAdd()}, '{ReceiveDate}'";
+            return $"{idbook}, {ReceiveDate.CheckAtNullForDB()}";
         }
 
         public override string GetTableName()
         {
             return TableNames.RECEIVED_BOOK_TABLE;
+        }
+
+        public override string GetQueueForDelete()
+        {
+            return $"DELETE FROM {TableNames.BOOK_TABLE} WHERE idbook = {idbook}";
         }
     }
 }

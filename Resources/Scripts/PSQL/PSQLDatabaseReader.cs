@@ -21,15 +21,16 @@ namespace SchoolLearn.Resources.Scripts
         {
             string cmdText = $"SELECT * FROM {TableNames.BOOK_TABLE}";
 
-            NpgsqlDataReader reader = MakeQuery(cmdText);
-
-            List<Book> books = new List<Book>();
-            while (reader.Read())
+            using (NpgsqlDataReader reader = MakeQuery(cmdText))
             {
-                books.Add(new DbBookFactory().Get(BookType.book, reader));
-            }
+                List<Book> books = new List<Book>();
+                while (reader.Read())
+                {
+                    books.Add(new DbBookFactory().Get(BookType.book, reader));
+                }
 
-            return books;
+                return books;
+            }
         }
 
         public List<GivenBook> ReadGivenBooks()
@@ -37,16 +38,17 @@ namespace SchoolLearn.Resources.Scripts
             string cmdText = $"SELECT * FROM {TableNames.BOOK_TABLE}, {TableNames.GIVEN_BOOK_TABLE}" +
                 $" WHERE {TableNames.GIVEN_BOOK_TABLE}.idbook = {TableNames.BOOK_TABLE}.idbook";
 
-            NpgsqlDataReader reader = MakeQuery(cmdText);
-
-            List<GivenBook> books = new List<GivenBook>();
-            while (reader.Read())
+            using (NpgsqlDataReader reader = MakeQuery(cmdText))
             {
-                Book book = bookFactory.Get(BookType.givenBook, reader);
-                books.Add((GivenBook)book);
-            }
+                List<GivenBook> books = new List<GivenBook>();
+                while (reader.Read())
+                {
+                    Book book = bookFactory.Get(BookType.givenBook, reader);
+                    books.Add((GivenBook)book);
+                }
 
-            return books;
+                return books;
+            }
         }
 
         public List<ReceivedBook> ReadReceivedBooks()
@@ -54,16 +56,17 @@ namespace SchoolLearn.Resources.Scripts
             string cmdText = $"SELECT * FROM {TableNames.BOOK_TABLE}, {TableNames.RECEIVED_BOOK_TABLE}" +
                 $" WHERE {TableNames.RECEIVED_BOOK_TABLE}.idbook = {TableNames.BOOK_TABLE}.idbook";
 
-            NpgsqlDataReader reader = MakeQuery(cmdText);
-
-            List<ReceivedBook> books = new List<ReceivedBook>();
-            while (reader.Read())
+            using (NpgsqlDataReader reader = MakeQuery(cmdText))
             {
-                Book book = bookFactory.Get(BookType.receivedBook, reader);
-                books.Add((ReceivedBook)book);
-            }
+                List<ReceivedBook> books = new List<ReceivedBook>();
+                while (reader.Read())
+                {
+                    Book book = bookFactory.Get(BookType.receivedBook, reader);
+                    books.Add((ReceivedBook)book);
+                }
 
-            return books;
+                return books;
+            }
         }
 
         private NpgsqlDataReader MakeQuery(string cmdText)

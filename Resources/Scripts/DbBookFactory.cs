@@ -21,6 +21,9 @@ namespace SchoolLearn.Resources.Scripts
                 case BookType.givenBook:
                     book = CreateGivenBook(reader);
                     break;
+                case BookType.receivedBook:
+                    book = CreateReceivedBook(reader);
+                    break;
                 default:
                     throw new Exception();
             }
@@ -53,8 +56,24 @@ namespace SchoolLearn.Resources.Scripts
                 Convert.ToInt32(reader["listcount"]),
                 Convert.ToDateTime(reader["givedate"]),
                 Convert.ToInt32(reader["idbook"]),
-                readingInterval,
-                Convert.ToInt32(reader["idgivenbook"])
+                Convert.ToInt32(reader["idgivenbook"]),
+                readingInterval
+                );
+        }
+
+        private ReceivedBook CreateReceivedBook(DbDataReader reader)
+        {
+            ReadingInterval readingInterval = CreateReadingInterval(reader);
+
+            return new ReceivedBook
+                (
+                reader["title"].ToString(),
+                Convert.ToDouble(reader["price"]),
+                Convert.ToInt32(reader["listcount"]),
+                Convert.ToDateTime(reader["receivedate"]),
+                Convert.ToInt32(reader["idbook"]),
+                Convert.ToInt32(reader["idreceivedbook"]),
+                readingInterval
                 );
         }
 

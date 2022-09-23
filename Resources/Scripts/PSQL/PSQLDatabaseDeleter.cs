@@ -41,9 +41,9 @@ namespace SchoolLearn.Resources.Scripts
                 NpgsqlCommand command = new NpgsqlCommand(cmdText, connection.GetNpgsqlConnection());
                 command.ExecuteNonQuery();
             }
-            catch (Exception)
+            catch (Exception ex)
             {
-                throw new DeleteException("Ошибка удаления обьекта") ;
+                throw new DeleteException("Ошибка удаления обьекта");
             }
         }
 
