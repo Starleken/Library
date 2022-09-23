@@ -23,28 +23,25 @@ namespace SchoolLearn
     /// </summary>
     public partial class MainWindow : Window
     {
+        private PSQLConnection connection;
+
         public MainWindow()
         {
             InitializeComponent();
 
-            DisplayStartFrame();
+            OpenConnection();
 
+            DisplayStartFrame();
+        }
+
+        void OpenConnection()
+        {
             string conn = $"Host=localhost;Username=postgres;Database=library;Port=5432;Password=tqw1467gheK";
 
-            PSQLConnection connection = new PSQLConnection(conn);
-
-            connection.TryOpenConnection();
-
+            connection = new PSQLConnection(conn);
             try
             {
-                PSQLDatabaseReader reader = new PSQLDatabaseReader(connection);
-                List<ReceivedBook> receivedBooks = reader.ReadReceivedBooks();
-
-                PSQLDatabaseDeleter deleter = new PSQLDatabaseDeleter(connection);
-                foreach (var item in receivedBooks)
-                {
-                    deleter.DeleteObject(item);
-                }
+                connection.TryOpenConnection();
             }
             catch (Exception ex)
             {
@@ -53,6 +50,6 @@ namespace SchoolLearn
             }
         }
 
-        private void DisplayStartFrame() => FrameShower.Navigate(new BooksList());
+        private void DisplayStartFrame() => FrameShower.Navigate(new BooksList(connection));
     }
 }

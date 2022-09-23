@@ -8,7 +8,7 @@ using Npgsql;
 
 namespace SchoolLearn.Resources.Scripts
 {
-    internal class PSQLConnection : IConnection
+    public class PSQLConnection : IConnection
     {
         public string ConnectionPath { get; set; }
 

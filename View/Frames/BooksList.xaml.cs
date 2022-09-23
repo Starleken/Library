@@ -12,6 +12,7 @@ using System.Windows.Media;
 using System.Windows.Media.Imaging;
 using System.Windows.Navigation;
 using System.Windows.Shapes;
+using SchoolLearn.Resources.Scripts;
 
 namespace SchoolLearn.View.Lists
 {
@@ -20,9 +21,26 @@ namespace SchoolLearn.View.Lists
     /// </summary>
     public partial class BooksList : Page
     {
-        public BooksList()
+        private PSQLConnection connection;
+
+        public BooksList(PSQLConnection connection)
         {
             InitializeComponent();
+
+            this.connection = connection;
+
+            FillTableWithBooks();
+        }
+        
+        private void FillTableWithBooks()
+        {
+            PSQLDatabaseReader reader = new PSQLDatabaseReader(connection);
+            List<Book> books = reader.ReadAllBooks();
+
+            foreach (Book book in books)
+            {
+                BookList.Items.Add(book);
+            }
         }
     }
 }

@@ -9,6 +9,16 @@
       Title="Page1" Background="White">
 
     <Grid>
-        <TextBlock Text="gfdgdfgdfgdf" FontSize="100"/>
+        <ListView Name="BookList">
+            <ListView.View>
+                <GridView>
+                    <GridViewColumn DisplayMemberBinding="{Binding Path=Title}">Название</GridViewColumn>
+                    <GridViewColumn DisplayMemberBinding="{Binding Path=Price}">Цена</GridViewColumn>
+                    <GridViewColumn DisplayMemberBinding="{Binding Path=PagesCount}">Количество страниц</GridViewColumn>
+                    <GridViewColumn DisplayMemberBinding="{Binding Path=beginreading}">Дата начала чтения</GridViewColumn>
+                    <GridViewColumn DisplayMemberBinding="{Binding Path=endreading}">Дата конца чтения</GridViewColumn>
+                </GridView>
+            </ListView.View>
+        </ListView>
     </Grid>
 </Page>

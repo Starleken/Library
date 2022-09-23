@@ -8,7 +8,7 @@
         Title="Список книг" Height="650" Width="1000" WindowStartupLocation="CenterScreen">
     <Grid>
         <Grid.ColumnDefinitions>
-            <ColumnDefinition Width="0.3*"/>
+            <ColumnDefinition Width="0.4*"/>
             <ColumnDefinition Width="*"/>
         </Grid.ColumnDefinitions>
         <Grid.RowDefinitions>
@@ -16,7 +16,18 @@
             <RowDefinition Height="*"/>
         </Grid.RowDefinitions>
 
+        <Image Source="Images/Books.jpg" Margin="0,5,0,0"/>
+
+        <Grid Grid.Row="1" Background="WhiteSmoke">
+            <StackPanel>
+                <Button Content="Все книги" FontSize="31" Name="BooksButton"/>
+                <Button Content="Полученные книги" FontSize="31" Name="GivenBooksButton"/>
+                <Button Content="Отданные книги" FontSize="31" Name="ReceivedBooksButton"/>
+            </StackPanel>
+        </Grid>
+        
         <Frame Name="FrameShower" Grid.Row="1" Grid.Column="1"/>
-        <Button Grid.Column="0" Grid.Row="1"/>
+
+        <TextBlock Grid.Row="0" Grid.Column="1" Text="Список всех книг" VerticalAlignment="Center" HorizontalAlignment="Center" FontSize="60"/>
     </Grid>
 </Window>
