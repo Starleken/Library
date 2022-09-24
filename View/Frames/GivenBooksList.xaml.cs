@@ -17,13 +17,13 @@ using SchoolLearn.Resources.Scripts;
 namespace SchoolLearn.View.Frames
 {
     /// <summary>
-    /// Логика взаимодействия для Page1.xaml
+    /// Логика взаимодействия для GivenBooksList.xaml
     /// </summary>
-    public partial class BooksList : Page
+    public partial class GivenBooksList : Page
     {
         private PSQLConnection connection;
 
-        public BooksList(PSQLConnection connection)
+        public GivenBooksList(PSQLConnection connection)
         {
             InitializeComponent();
 
@@ -31,15 +31,15 @@ namespace SchoolLearn.View.Frames
 
             FillTableWithBooks();
         }
-        
+
         private void FillTableWithBooks()
         {
             PSQLDatabaseReader reader = new PSQLDatabaseReader(connection);
-            List<Book> books = reader.ReadAllBooks();
+            List<GivenBook> books = reader.ReadGivenBooks();
 
-            foreach (Book book in books)
+            foreach (GivenBook book in books)
             {
-                BookList.Items.Add(book);
+                GivenBookList.Items.Add(book);
             }
         }
     }

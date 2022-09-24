@@ -119,6 +119,14 @@
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
+    <Page Include="View\Frames\GivenBooksList.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="View\Frames\ReceivedBooksList.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
     <Page Include="View\MainWindow.xaml">
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
@@ -151,6 +159,12 @@
     <Compile Include="Resources\Scripts\PSQL\PSQLConnection.cs" />
     <Compile Include="View\Frames\BooksList.xaml.cs">
       <DependentUpon>BooksList.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="View\Frames\GivenBooksList.xaml.cs">
+      <DependentUpon>GivenBooksList.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="View\Frames\ReceivedBooksList.xaml.cs">
+      <DependentUpon>ReceivedBooksList.xaml</DependentUpon>
     </Compile>
     <Compile Include="View\MainWindow.xaml.cs">
       <DependentUpon>MainWindow.xaml</DependentUpon>

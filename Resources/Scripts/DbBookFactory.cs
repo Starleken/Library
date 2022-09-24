@@ -81,11 +81,16 @@ namespace SchoolLearn.Resources.Scripts
         {
             ReadingInterval readingInterval;
 
-            if (reader["beginreading"] != DBNull.Value)
+            if (reader["beginreading"] != DBNull.Value && reader["endreading"] != DBNull.Value)
             {
                 readingInterval = new ReadingInterval(
                 Convert.ToDateTime(reader["beginreading"]),
                 Convert.ToDateTime(reader["endreading"]));
+            }
+            else if (reader["beginreading"] != DBNull.Value)
+            {
+                readingInterval = new ReadingInterval(
+                    Convert.ToDateTime(reader["beginreading"]));
             }
             else readingInterval = new ReadingInterval();
 

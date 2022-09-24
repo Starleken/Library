@@ -8,20 +8,20 @@ namespace SchoolLearn.Resources.Scripts
 {
     internal class ReceivedBook : Book
     {
-        public DateTime ReceiveDate { get; set; }
+        public DateTime ReceivedDate { get; set; }
 
         private int idbook;
 
         public ReceivedBook(string title, double price, int pagesCount, DateTime receiveDate, int idbook, int? id = null, ReadingInterval readingInterval = null) 
             : base(title, price, pagesCount, readingInterval, id)
         {
-            this.ReceiveDate = receiveDate;
+            this.ReceivedDate = receiveDate;
             this.idbook = idbook;
         }
 
         public override string GetInfoForAdd()
         {
-            return $"{idbook}, {ReceiveDate.CheckAtNullForDB()}";
+            return $"{idbook}, {ReceivedDate.CheckAtNullForDB()}";
         }
 
         public override string GetTableName()

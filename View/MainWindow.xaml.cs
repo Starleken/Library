@@ -12,9 +12,9 @@ using System.Windows.Media;
 using System.Windows.Media.Imaging;
 using System.Windows.Navigation;
 using System.Windows.Shapes;
-using SchoolLearn.View.Lists;
 using SchoolLearn.Resources.Scripts;
 using Npgsql;
+using SchoolLearn.View.Frames;
 
 namespace SchoolLearn
 {
@@ -51,5 +51,11 @@ namespace SchoolLearn
         }
 
         private void DisplayStartFrame() => FrameShower.Navigate(new BooksList(connection));
+
+        private void GivenBooksButton_Click(object sender, RoutedEventArgs e) => FrameShower.Navigate(new GivenBooksList(connection));
+
+        private void BooksButton_Click(object sender, RoutedEventArgs e) => FrameShower.Navigate(new BooksList(connection));
+
+        private void ReceivedBooksButton_Click(object sender, RoutedEventArgs e) => FrameShower.Navigate(new ReceivedBooksList(connection));
     }
 }

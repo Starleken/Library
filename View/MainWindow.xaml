@@ -20,13 +20,13 @@
 
         <Grid Grid.Row="1" Background="WhiteSmoke">
             <StackPanel>
-                <Button Content="Все книги" FontSize="31" Name="BooksButton"/>
-                <Button Content="Полученные книги" FontSize="31" Name="GivenBooksButton"/>
-                <Button Content="Отданные книги" FontSize="31" Name="ReceivedBooksButton"/>
+                <Button Content="Все книги" FontSize="31" Name="BooksButton" Click="BooksButton_Click"/>
+                <Button Content="Полученные книги" FontSize="31" Name="GivenBooksButton" Click="GivenBooksButton_Click"/>
+                <Button Content="Отданные книги" FontSize="31" Name="ReceivedBooksButton" Click="ReceivedBooksButton_Click"/>
             </StackPanel>
         </Grid>
         
-        <Frame Name="FrameShower" Grid.Row="1" Grid.Column="1"/>
+        <Frame Name="FrameShower" Grid.Row="1" Grid.Column="1" NavigationUIVisibility="Hidden"/>
 
         <TextBlock Grid.Row="0" Grid.Column="1" Text="Список всех книг" VerticalAlignment="Center" HorizontalAlignment="Center" FontSize="60"/>
     </Grid>
