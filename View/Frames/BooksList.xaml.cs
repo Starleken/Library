@@ -42,5 +42,17 @@ namespace SchoolLearn.View.Frames
                 BookList.Items.Add(book);
             }
         }
+
+        private void MenuItemEdit_Click(object sender, RoutedEventArgs e)
+        {
+            Book book = (Book)BookList.SelectedItem;
+            MessageBox.Show(book.Id.ToString());
+        }
+
+        private void MenuItemDelete_Click(object sender, RoutedEventArgs e)
+        {
+            PSQLDatabaseDeleter deleter = new PSQLDatabaseDeleter(connection);
+            deleter.DeleteObject((Book)BookList.SelectedItem);
+        }
     }
 }

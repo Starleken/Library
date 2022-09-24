@@ -31,7 +31,7 @@ namespace SchoolLearn
 
             OpenConnection();
 
-            DisplayStartFrame();
+            DisplayPage(new BooksList(connection));
         }
 
         void OpenConnection()
@@ -50,12 +50,15 @@ namespace SchoolLearn
             }
         }
 
-        private void DisplayStartFrame() => FrameShower.Navigate(new BooksList(connection));
+        private void DisplayPage(Page page)
+        {
+            FrameShower.Navigate(page);
+        }
 
-        private void GivenBooksButton_Click(object sender, RoutedEventArgs e) => FrameShower.Navigate(new GivenBooksList(connection));
+        private void GivenBooksButton_Click(object sender, RoutedEventArgs e) => DisplayPage(new GivenBooksList(connection));
 
-        private void BooksButton_Click(object sender, RoutedEventArgs e) => FrameShower.Navigate(new BooksList(connection));
+        private void BooksButton_Click(object sender, RoutedEventArgs e) => DisplayPage(new BooksList(connection));
 
-        private void ReceivedBooksButton_Click(object sender, RoutedEventArgs e) => FrameShower.Navigate(new ReceivedBooksList(connection));
+        private void ReceivedBooksButton_Click(object sender, RoutedEventArgs e) => DisplayPage(new ReceivedBooksList(connection));
     }
 }
