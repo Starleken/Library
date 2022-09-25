@@ -23,6 +23,7 @@
                 <Button Content="Все книги" FontSize="31" Name="BooksButton" Click="BooksButton_Click"/>
                 <Button Content="Полученные книги" FontSize="31" Name="GivenBooksButton" Click="GivenBooksButton_Click"/>
                 <Button Content="Отданные книги" FontSize="31" Name="ReceivedBooksButton" Click="ReceivedBooksButton_Click"/>
+                <Button Content="Добавить книгу" FontSize="31" Name="AddBooksButton" Click="AddBooksButton_Click"/>
             </StackPanel>
         </Grid>
         

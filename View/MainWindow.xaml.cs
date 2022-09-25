@@ -60,5 +60,11 @@ namespace SchoolLearn
         private void BooksButton_Click(object sender, RoutedEventArgs e) => DisplayPage(new BooksList(connection));
 
         private void ReceivedBooksButton_Click(object sender, RoutedEventArgs e) => DisplayPage(new ReceivedBooksList(connection));
+
+        private void AddBooksButton_Click(object sender, RoutedEventArgs e)
+        {
+            AddBookWindow addBookWindow = new AddBookWindow();
+            addBookWindow.ShowDialog();
+        }
     }
 }
