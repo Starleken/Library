@@ -23,7 +23,7 @@
         </Grid.RowDefinitions>
 
         <Viewbox Height="40">
-            <CheckBox Content="Книга получена в долг?" Grid.ColumnSpan="2" Checked="CheckBox_Checked" Unchecked="CheckBox_Unchecked"/>
+            <CheckBox Content="Книга получена в долг?" Grid.ColumnSpan="2" Checked="CheckBox_Checked" Unchecked="CheckBox_Unchecked" Name="BookCheckBox"/>
         </Viewbox>
         <TextBlock Grid.Row="1" HorizontalAlignment="Right" VerticalAlignment="Center" FontSize="30" Text="Название"/>
         <TextBlock Grid.Row="2" HorizontalAlignment="Right" VerticalAlignment="Center" FontSize="30" Text="Цена книги"/>

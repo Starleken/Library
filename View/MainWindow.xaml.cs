@@ -63,7 +63,7 @@ namespace SchoolLearn
 
         private void AddBooksButton_Click(object sender, RoutedEventArgs e)
         {
-            AddBookWindow addBookWindow = new AddBookWindow();
+            AddBookWindow addBookWindow = new AddBookWindow(connection);
             addBookWindow.ShowDialog();
         }
     }

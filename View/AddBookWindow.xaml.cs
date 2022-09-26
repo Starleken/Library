@@ -11,6 +11,7 @@ using System.Windows.Input;
 using System.Windows.Media;
 using System.Windows.Media.Imaging;
 using System.Windows.Shapes;
+using SchoolLearn.Resources.Scripts;
 
 namespace SchoolLearn
 {
@@ -19,9 +20,13 @@ namespace SchoolLearn
     /// </summary>
     public partial class AddBookWindow : Window
     {
-        public AddBookWindow()
+        private PSQLConnection connection;
+
+        public AddBookWindow(PSQLConnection connection)
         {
             InitializeComponent();
+
+            this.connection = connection;
 
             ReceivedDateTextBox.Visibility = Visibility.Collapsed;
             ReceivedDateTextBlock.Visibility = Visibility.Collapsed;
@@ -41,13 +46,55 @@ namespace SchoolLearn
 
         private void AddBookButton_Click(object sender, RoutedEventArgs e)
         {
-            CheckField();
+            try
+            {
+                CheckField();
+                AddBook();
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show(ex.Message);
+                return;
+            }
         }
 
-        private bool CheckField()
+        private void CheckField()
         {
-            MessageBox.Show("Поля не заполнены");
-            return false;
+            if (TitleTextBox.Text == "" || PriceTextBox.Text == "" || ListCountTextBox.Text == "")
+            {
+                throw new Exception("Заполните поля");
+            }
+            else if (BookCheckBox.IsChecked == true && ReceivedDateTextBox.Text == "")
+            {
+                throw new Exception("Заполните поля");
+            }
+        }
+
+        private void AddBook()
+        {
+            double price = Convert.ToDouble(PriceTextBox.Text);
+            int listcount = Convert.ToInt32(ListCountTextBox.Text);
+            DateTime? beginreading = CheckDateTextBoxAtNull(DateBeginTextBox);
+            DateTime? endReading = CheckDateTextBoxAtNull(DateEndTextBox);
+
+            Book book = new BookFactory().Get(BookType.book, TitleTextBox.Text, price, listcount,
+                beginreading, endReading);
+
+            PSQLDatabaseAdder adder = new PSQLDatabaseAdder(connection);
+            adder.TryAdd(book);
+        }
+
+        private DateTime? CheckDateTextBoxAtNull(TextBox textBox)
+        {
+            DateTime? date;
+
+            if (textBox.Text == "")
+            {
+                date = null;
+            }
+            else date = Convert.ToDateTime(textBox.Text);
+
+            return date;
         }
     }
 }
